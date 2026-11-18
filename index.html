@@ -23,7 +23,11 @@
     --line: #e6e6e6;
     --bg-soft: #f7f8fa;
     --bg: #ffffff;
-    --bg-nav: rgba(255,255,255,.92);
+    --glass-bg: rgba(255,255,255,.55);
+    --glass-hi: rgba(255,255,255,.85);
+    --glass-lo: rgba(255,255,255,.3);
+    --glass-sheen: rgba(255,255,255,.5);
+    --glass-shadow: rgba(0,0,0,.08);
     --underline: #c9ccd0;
     --display: "Futura", "Futura PT", "Jost", "Century Gothic", sans-serif;
     color-scheme: light;
@@ -35,7 +39,11 @@
     --line: #34383c;
     --bg-soft: #212528;
     --bg: #17191c;
-    --bg-nav: rgba(23,25,28,.92);
+    --glass-bg: rgba(23,25,28,.5);
+    --glass-hi: rgba(255,255,255,.12);
+    --glass-lo: rgba(255,255,255,.04);
+    --glass-sheen: rgba(255,255,255,.06);
+    --glass-shadow: rgba(0,0,0,.4);
     --underline: #4a4f54;
     color-scheme: dark;
   }
@@ -48,7 +56,11 @@
       --line: #34383c;
       --bg-soft: #212528;
       --bg: #17191c;
-      --bg-nav: rgba(23,25,28,.92);
+      --glass-bg: rgba(23,25,28,.5);
+      --glass-hi: rgba(255,255,255,.12);
+      --glass-lo: rgba(255,255,255,.04);
+      --glass-sheen: rgba(255,255,255,.06);
+      --glass-shadow: rgba(0,0,0,.4);
       --underline: #4a4f54;
       color-scheme: dark;
     }
@@ -71,9 +83,12 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: var(--bg-nav);
-    backdrop-filter: blur(8px);
+    background-color: var(--glass-bg);
+    background-image: linear-gradient(180deg, var(--glass-sheen), transparent 65%);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    backdrop-filter: blur(20px) saturate(1.8);
     border-bottom: 1px solid var(--line);
+    box-shadow: inset 0 1px 0 var(--glass-hi), inset 0 -1px 0 var(--glass-lo), 0 4px 16px var(--glass-shadow);
   }
   .nav-inner {
     max-width: 1060px;
@@ -155,7 +170,7 @@
   .entry:last-child { margin-bottom: 0; }
   .entry-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .entry-org { display: flex; align-items: center; gap: 10px; min-width: 0; }
-  .org-logo { flex: none; width: 96px; height: 36px; object-fit: contain; }
+  .org-logo { flex: none; width: 80px; height: 30px; object-fit: contain; }
   .entry-title { font-weight: 600; }
   .entry-date { color: var(--muted); font-size: 13.5px; white-space: nowrap; }
   .entry-sub { color: var(--muted); font-size: 14px; }
@@ -196,9 +211,13 @@
     display: flex;
     gap: 2px;
     padding: 3px;
-    background: var(--bg-soft);
+    background-color: var(--glass-bg);
+    background-image: linear-gradient(180deg, var(--glass-sheen), transparent 70%);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    backdrop-filter: blur(20px) saturate(1.8);
     border: 1px solid var(--line);
     border-radius: 999px;
+    box-shadow: inset 0 1px 0 var(--glass-hi), inset 0 -1px 0 var(--glass-lo), 0 6px 20px var(--glass-shadow);
   }
   .theme-switch button {
     font-family: var(--display);
@@ -212,8 +231,8 @@
     padding: 3px 10px;
     cursor: pointer;
   }
-  .theme-switch button:hover { color: var(--text); }
-  .theme-switch button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+  .theme-switch button:hover { color: var(--text); background: var(--glass-lo); }
+  .theme-switch button[aria-pressed="true"] { background: var(--accent); color: var(--bg); box-shadow: inset 0 1px 0 rgba(255,255,255,.25); }
 
   @media (max-width: 860px) {
     .layout { grid-template-columns: 1fr; gap: 32px; padding-top: 32px; }
