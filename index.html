@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lichen Huang</title>
 <meta name="description" content="Lichen Huang — undergraduate at UESTC. Research on generative models, world models, and autonomous driving.">
+<meta name="theme-color" content="#ffffff">
+<script>
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,7 +22,37 @@
     --accent: #3f454b;
     --line: #e6e6e6;
     --bg-soft: #f7f8fa;
+    --bg: #ffffff;
+    --bg-nav: rgba(255,255,255,.92);
+    --underline: #c9ccd0;
     --display: "Futura", "Futura PT", "Jost", "Century Gothic", sans-serif;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --text: #e6e6e6;
+    --muted: #9a9a9a;
+    --accent: #c9cdd2;
+    --line: #34383c;
+    --bg-soft: #212528;
+    --bg: #17191c;
+    --bg-nav: rgba(23,25,28,.92);
+    --underline: #4a4f54;
+    color-scheme: dark;
+  }
+  :root[data-theme="dark"] .org-logo[src$="nio.png"] { filter: invert(1); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --text: #e6e6e6;
+      --muted: #9a9a9a;
+      --accent: #c9cdd2;
+      --line: #34383c;
+      --bg-soft: #212528;
+      --bg: #17191c;
+      --bg-nav: rgba(23,25,28,.92);
+      --underline: #4a4f54;
+      color-scheme: dark;
+    }
+    :root:not([data-theme="light"]) .org-logo[src$="nio.png"] { filter: invert(1); }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -24,9 +61,9 @@
     font-size: 15.5px;
     line-height: 1.65;
     color: var(--text);
-    background: #fff;
+    background: var(--bg);
   }
-  a { color: var(--accent); text-decoration: underline; text-decoration-color: #c9ccd0; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--underline); text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:hover { text-decoration-color: var(--accent); }
 
   /* top navigation */
@@ -34,7 +71,7 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(255,255,255,.92);
+    background: var(--bg-nav);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
@@ -150,6 +187,33 @@
   .awards li { margin-bottom: 5px; padding-left: 14px; position: relative; }
   .awards li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
   .awards .rank { color: var(--muted); }
+
+  .theme-switch {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 20;
+    display: flex;
+    gap: 2px;
+    padding: 3px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  .theme-switch button {
+    font-family: var(--display);
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: 999px;
+    padding: 3px 10px;
+    cursor: pointer;
+  }
+  .theme-switch button:hover { color: var(--text); }
+  .theme-switch button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
 
   @media (max-width: 860px) {
     .layout { grid-template-columns: 1fr; gap: 32px; padding-top: 32px; }
@@ -293,6 +357,36 @@
 
   </main>
 </div>
+
+<div class="theme-switch" role="group" aria-label="Color theme">
+  <button type="button" data-theme="light">Light</button>
+  <button type="button" data-theme="dark">Dark</button>
+  <button type="button" data-theme="auto">Auto</button>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const mq = matchMedia('(prefers-color-scheme: dark)');
+  const buttons = document.querySelectorAll('.theme-switch button');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const current = () => {
+    try { return localStorage.getItem('theme') || 'auto'; } catch (e) { return 'auto'; }
+  };
+  function apply() {
+    const t = current();
+    if (t === 'auto') root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', t);
+    const dark = t === 'dark' || (t === 'auto' && mq.matches);
+    meta.content = dark ? '#17191c' : '#ffffff';
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.theme === t)));
+  }
+  buttons.forEach(b => b.addEventListener('click', () => {
+    try { localStorage.setItem('theme', b.dataset.theme); } catch (e) {}
+    apply();
+  }));
+  mq.addEventListener('change', apply);
+  apply();
+</script>
 
 </body>
 </html>
