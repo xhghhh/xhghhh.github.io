@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lichen Huang</title>
+<meta name="description" content="Lichen Huang — undergraduate at UESTC. Research on generative models, world models, and autonomous driving.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #3f454b;
+    --line: #e6e6e6;
+    --bg-soft: #f7f8fa;
+    --display: "Futura", "Futura PT", "Jost", "Century Gothic", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", sans-serif;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--text);
+    background: #fff;
+  }
+  a { color: var(--accent); text-decoration: underline; text-decoration-color: #c9ccd0; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* top navigation */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 16px; letter-spacing: .04em; color: var(--text); text-decoration: none; }
+  .brand:hover { text-decoration: none; color: var(--accent); }
+  .nav-links { display: flex; gap: 22px; font-size: 13px; overflow-x: auto; }
+  .nav-links a { font-family: var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; text-decoration: none; }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+  /* two-column layout */
+  .layout {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 44px 24px 56px;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  aside { position: sticky; top: 86px; }
+  .avatar {
+    display: block;
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    margin-bottom: 16px;
+  }
+  aside h1 { font-family: var(--display); font-size: 25px; font-weight: 600; letter-spacing: .02em; }
+  .role { color: var(--muted); font-size: 14.5px; margin-top: 4px; }
+  .contact { list-style: none; margin-top: 16px; font-size: 14px; }
+  .contact li { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+  .contact svg { flex: none; width: 15px; height: 15px; fill: var(--muted); }
+  .contact a { word-break: break-all; }
+  .interests { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .interests span {
+    font-size: 12.5px;
+    color: var(--muted);
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+  .seeking {
+    margin-top: 18px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--accent);
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 8px 10px;
+  }
+
+  main { min-width: 0; }
+  section { margin-bottom: 36px; scroll-margin-top: 74px; }
+  h2 {
+    font-family: var(--display);
+    font-size: 14.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 14px;
+  }
+
+  .entry { margin-bottom: 15px; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .entry-org { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .org-logo { flex: none; width: 96px; height: 36px; object-fit: contain; }
+  .entry-title { font-weight: 600; }
+  .entry-date { color: var(--muted); font-size: 13.5px; white-space: nowrap; }
+  .entry-sub { color: var(--muted); font-size: 14px; }
+  .entry p.desc { font-size: 14.5px; margin-top: 3px; }
+
+  .pub { margin-bottom: 16px; }
+  .pub:last-child { margin-bottom: 0; }
+  .pub-title { font-weight: 600; }
+  .pub-authors { font-size: 14px; margin-top: 2px; color: var(--muted); }
+  .pub-authors .me { color: var(--text); font-weight: 600; }
+  .pub-venue { font-size: 14px; color: var(--muted); font-style: italic; margin-top: 2px; }
+  .badge {
+    display: inline-block;
+    font-family: var(--display);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    padding: 0 6px;
+    margin-left: 6px;
+    vertical-align: 1px;
+  }
+  .note { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+
+  .awards { list-style: none; font-size: 14.5px; }
+  .awards li { margin-bottom: 5px; padding-left: 14px; position: relative; }
+  .awards li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+  .awards .rank { color: var(--muted); }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; gap: 32px; padding-top: 32px; }
+    aside { position: static; }
+    .avatar { width: 104px; height: 104px; }
+  }
+  @media (max-width: 560px) {
+    .entry-head { flex-direction: column; align-items: flex-start; gap: 2px; }
+  }
+</style>
+</head>
+<body id="top">
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#top">Lichen Huang</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#awards">Awards</a>
+    </div>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <aside>
+    <img class="avatar" src="assets/portrait.jpg" alt="Portrait of Lichen Huang">
+    <h1>Lichen Huang</h1>
+    <p class="role">B.Eng. in Software Engineering<br>University of Electronic Science and Technology of China</p>
+    <ul class="contact">
+      <li>
+        <svg viewBox="0 0 24 24"><path d="M2 5h20v14H2V5zm2 2v.5l8 5 8-5V7H4zm16 2.9-8 5-8-5V17h16V9.9z"/></svg>
+        <a href="mailto:lichen_huang@std.uestc.edu.cn">lichen_huang@std.uestc.edu.cn</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <a href="https://github.com/xhghhh">github.com/xhghhh</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+        <a href="https://scholar.google.com/citations?user=dLZ_aS8AAAAJ&amp;hl=en">Google Scholar</a>
+      </li>
+    </ul>
+    <div class="interests">
+      <span>Generative Models</span>
+      <span>World Models</span>
+      <span>VLM / VLA</span>
+      <span>Autonomous Driving</span>
+    </div>
+    <p class="seeking">Actively seeking industry internships and Fall 2027 PhD opportunities.</p>
+  </aside>
+
+  <main>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I am a final-year undergraduate in Software Engineering at <a href="https://en.uestc.edu.cn/">UESTC</a>,
+        working on <b>generative models, world models, and vision-language-action models</b> for autonomous driving.
+        I am currently a research assistant at Tsinghua University with Prof. Xianyuan Zhan;
+        previously I worked on driving world models and end-to-end planning at NIO,
+        and on VLA decision-planning systems at Alibaba Cainiao.
+      </p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-title">University of Electronic Science and Technology of China</span>
+          <span class="entry-date">2023 – 2027 (expected)</span>
+        </div>
+        <div class="entry-sub">B.Eng. in Software Engineering · GPA 3.68/4.00 (85.87/100) · IELTS 7.5</div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-title">University of Cambridge, Fitzwilliam College</span>
+          <span class="entry-date">Jan – Feb 2024</span>
+        </div>
+        <div class="entry-sub">Winter School in AI and Computer Science · A+ project, ranked first in final presentation</div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-org"><img class="org-logo" src="assets/tsinghua.png" alt="Tsinghua University"><span class="entry-title">Tsinghua University</span></span>
+          <span class="entry-date">Feb 2026 – Present</span>
+        </div>
+        <div class="entry-sub">Research Assistant · Advisor: Prof. Xianyuan Zhan</div>
+        <p class="desc">Generative AI and end-to-end autonomous driving.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-org"><img class="org-logo" src="assets/alibaba.png" alt="Alibaba Group"><span class="entry-title"><a href="https://www.cainiao.com/en/technology-unmanned-vehicles.html" target="_blank" rel="noopener">Alibaba Group — Cainiao Autonomous Driving Lab</a></span></span>
+          <span class="entry-date">Dec 2025 – Feb 2026</span>
+        </div>
+        <div class="entry-sub">Multimodal Large Model Algorithm Engineer</div>
+        <p class="desc">Vision-language-action models for autonomous driving decision and planning.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-org"><img class="org-logo" src="assets/nio.png" alt="NIO"><span class="entry-title"><a href="https://www.nio.com/innovation?noredirect=#intelligentDriving" target="_blank" rel="noopener">NIO — Large Model Application Department</a></span></span>
+          <span class="entry-date">Jun 2025 – Dec 2025</span>
+        </div>
+        <div class="entry-sub">Foundation &amp; World Model Algorithm Engineer</div>
+        <p class="desc">Multi-view video world models and end-to-end planning for autonomous driving.</p>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <p class="note">* Equal contribution</p>
+
+      <div class="pub">
+        <div class="pub-title">Can Image Models Imagine Time? ImageTime: A Novel Benchmark for Probing Visual World Modeling through Spatiotemporal Consistency</div>
+        <div class="pub-authors">X. Wu*, <span class="me">L. Huang</span>*</div>
+        <div class="pub-venue"><span class="badge">WACV 2027</span> · <a href="https://arxiv.org/abs/2606.10620">arXiv:2606.10620</a></div>
+      </div>
+    </section>
+
+    <section id="awards">
+      <h2>Honors &amp; Awards</h2>
+      <ul class="awards">
+        <li>Excellent Student Scholarship <span class="rank">(Top 5%, university)</span></li>
+        <li>Grand Prize, National English Competition for Chinese College Students <span class="rank">(Top 0.1%, national)</span></li>
+        <li>Second Prize, National Computer Design Competition <span class="rank">(Top 5%, provincial)</span></li>
+        <li>Third Prize, Service Outsourcing Innovation &amp; Entrepreneurship Competition <span class="rank">(Top 5%, national)</span></li>
+        <li>Best Performance Award, Jiangsu Graduate Summer School, Nanjing University, 2024 <span class="rank">(Top 5%)</span></li>
+      </ul>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
