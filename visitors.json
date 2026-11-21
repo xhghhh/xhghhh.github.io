@@ -1,0 +1,17 @@
+{
+  "updated": "2026-11-21T07:11:25.248Z",
+  "totalVisitors": 2,
+  "countryCount": 2,
+  "countries": [
+    {
+      "code": "cn",
+      "name": "China",
+      "visitors": 1
+    },
+    {
+      "code": "hk",
+      "name": "Hong Kong",
+      "visitors": 1
+    }
+  ]
+}
