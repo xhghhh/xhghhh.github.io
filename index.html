@@ -406,7 +406,7 @@
           <span class="visitor-label">Visitors · <span id="visitor-countries">0</span> countries</span>
         </div>
         <ul class="visitor-list" id="visitor-list"></ul>
-        <p class="visitor-note">Synced hourly · <span id="visitor-updated"></span> · <a href="https://info.flagcounter.com/F4Cs" target="_blank" rel="noopener">full statistics</a></p>
+        <p class="visitor-note">Synced hourly · <span id="visitor-updated"></span></p>
       </div>
       <img id="visitor-beacon" src="https://s05.flagcounter.com/count2/F4Cs/bg_FFFFFF/txt_6B6B6B/border_E6E6E6/columns_4/maxflags_12/viewers_3/labels_1/pageviews_1/flags_0/percent_0/" alt="" style="display:none">
     </section>
@@ -463,7 +463,7 @@
       list.append(li);
     });
     document.getElementById('visitor-updated').textContent = 'updated ' +
-      new Date(d.updated).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      new Date(d.updated).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC';
     document.getElementById('visitor-card').hidden = false;
   }).catch(() => { document.getElementById('visitors').hidden = true; });
 </script>
