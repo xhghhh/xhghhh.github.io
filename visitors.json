@@ -1,8 +1,18 @@
 {
-  "updated": "2026-11-21T07:11:25.248Z",
-  "totalVisitors": 2,
-  "countryCount": 2,
+  "updated": "2026-11-22T07:06:25.624Z",
+  "totalVisitors": 5,
+  "countryCount": 4,
   "countries": [
+    {
+      "code": "tw",
+      "name": "Taiwan, China",
+      "visitors": 2
+    },
+    {
+      "code": "ae",
+      "name": "United Arab Emirates",
+      "visitors": 1
+    },
     {
       "code": "cn",
       "name": "China",

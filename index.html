@@ -224,6 +224,7 @@
   .visitor-list li { display: flex; align-items: center; gap: 7px; font-size: 13.5px; }
   .vflag { font-size: 16px; line-height: 1; }
   .visitor-list .vcount { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .visitor-list .vmore { color: var(--muted); }
   .visitor-note { width: 100%; font-size: 12.5px; color: var(--muted); }
 
   .theme-switch {
@@ -403,7 +404,7 @@
       <div class="visitor-card" id="visitor-card" hidden>
         <div class="visitor-total">
           <span class="visitor-num" id="visitor-total">0</span>
-          <span class="visitor-label">Visitors · <span id="visitor-countries">0</span> countries</span>
+          <span class="visitor-label">Visitors · <span id="visitor-countries">0</span> countries or regions</span>
         </div>
         <ul class="visitor-list" id="visitor-list"></ul>
         <p class="visitor-note">Synced hourly · <span id="visitor-updated"></span></p>
@@ -449,7 +450,8 @@
     document.getElementById('visitor-total').textContent = d.totalVisitors.toLocaleString('en-US');
     document.getElementById('visitor-countries').textContent = d.countryCount;
     const list = document.getElementById('visitor-list');
-    d.countries.slice(0, 8).forEach(c => {
+    const shown = d.countries.slice(0, 8);
+    shown.forEach(c => {
       const li = document.createElement('li');
       const flag = document.createElement('span');
       flag.className = 'vflag';
@@ -462,6 +464,12 @@
       li.append(flag, name, count);
       list.append(li);
     });
+    if (d.countries.length > shown.length) {
+      const li = document.createElement('li');
+      li.className = 'vmore';
+      li.textContent = '+' + (d.countries.length - shown.length) + ' more';
+      list.append(li);
+    }
     document.getElementById('visitor-updated').textContent = 'updated ' +
       new Date(d.updated).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC';
     document.getElementById('visitor-card').hidden = false;
