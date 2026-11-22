@@ -31,10 +31,9 @@ const countries = rows
 const data = {
   updated: new Date().toISOString(),
   totalVisitors: countries.reduce((s, c) => s + c.visitors, 0),
-  countryCount: countries.length,
   countries,
 };
 
 const out = new URL('../visitors.json', import.meta.url);
 await fs.writeFile(out, JSON.stringify(data, null, 2) + '\n');
-console.log(`visitors.json written: ${data.totalVisitors} visitors, ${data.countryCount} countries/regions`);
+console.log(`visitors.json written: ${data.totalVisitors} visitors`);
