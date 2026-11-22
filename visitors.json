@@ -1,7 +1,17 @@
 {
-  "updated": "2026-11-22T07:15:39.047Z",
-  "totalVisitors": 5,
+  "updated": "2026-11-22T15:17:07.518Z",
+  "totalVisitors": 9,
   "countries": [
+    {
+      "code": "us",
+      "name": "United States",
+      "visitors": 3
+    },
+    {
+      "code": "hk",
+      "name": "Hong Kong",
+      "visitors": 2
+    },
     {
       "code": "tw",
       "name": "Taiwan, China",
@@ -15,11 +25,6 @@
     {
       "code": "cn",
       "name": "China",
-      "visitors": 1
-    },
-    {
-      "code": "hk",
-      "name": "Hong Kong",
       "visitors": 1
     }
   ]
