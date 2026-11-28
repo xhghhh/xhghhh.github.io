@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-27T21:31:36.140Z",
-  "totalVisitors": 19,
+  "updated": "2026-11-28T03:31:55.429Z",
+  "totalVisitors": 21,
   "countries": [
     {
       "code": "hk",
       "name": "Hong Kong",
-      "visitors": 6
+      "visitors": 7
     },
     {
       "code": "us",
@@ -15,7 +15,7 @@
     {
       "code": "ae",
       "name": "United Arab Emirates",
-      "visitors": 3
+      "visitors": 4
     },
     {
       "code": "cn",
