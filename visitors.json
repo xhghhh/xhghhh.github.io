@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-28T03:31:55.429Z",
-  "totalVisitors": 21,
+  "updated": "2026-11-28T12:23:46.287Z",
+  "totalVisitors": 23,
   "countries": [
     {
       "code": "hk",
       "name": "Hong Kong",
-      "visitors": 7
+      "visitors": 9
     },
     {
       "code": "us",
